@@ -5,55 +5,97 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ir.instagramfragment.Adapters.AdapterPost
+import com.ir.instagramfragment.Adapters.AdapterStories
+import com.ir.instagramfragment.Class.DataPost
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    lateinit var root:View
+    lateinit var arrayListImage: ArrayList<Int>
+    lateinit var arrayListName: ArrayList<String>
+    lateinit var arrayListPost: ArrayList<DataPost>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        root = inflater.inflate(R.layout.fragment_home, container, false)
+
+        addPhotoToArrayList()
+
+        val linerLayoutManager = LinearLayoutManager(this.context)
+        linerLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        root.recyclerViewStories.layoutManager = linerLayoutManager
+        val adapterStories = this.context?.let { AdapterStories(it, arrayListImage , arrayListName ) }
+        root.recyclerViewStories.adapter = adapterStories
+
+        val adapterPost = this.context?.let { AdapterPost(it, arrayListPost) }
+        root.recyclerViewPost.adapter = adapterPost
+
+        return root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun addPhotoToArrayList() {
+        val photo1 = R.drawable.photo_11
+        val photo2 = R.drawable.photo_2
+        val photo3 = R.drawable.photo_3
+        val photo4 = R.drawable.photo_4
+        val photo5 = R.drawable.photo_5
+        val photo6 = R.drawable.photo_6
+        val photo7 = R.drawable.photo_7
+        val photo8 = R.drawable.photo_8
+        val photo9 = R.drawable.photo_9
+        val photo10 = R.drawable.photo_10
+        val photo11 = R.drawable.photo_1
+        val photo12 = R.drawable.photo_12
+        val photo13 = R.drawable.photo_13
+        val photo14 = R.drawable.photo_14
+        val photo15 = R.drawable.photo_15
+        val photo16 = R.drawable.photo_16
+
+        arrayListImage = ArrayList()
+        arrayListName = ArrayList()
+        arrayListPost = ArrayList()
+
+        arrayListImage.add(photo1)
+        arrayListImage.add(photo2)
+        arrayListImage.add(photo3)
+        arrayListImage.add(photo4)
+        arrayListImage.add(photo5)
+        arrayListImage.add(photo6)
+        arrayListImage.add(photo7)
+        arrayListImage.add(photo8)
+        arrayListImage.add(photo9)
+        arrayListImage.add(photo10)
+        arrayListImage.add(photo11)
+        arrayListImage.add(photo12)
+        arrayListImage.add(photo13)
+        arrayListImage.add(photo14)
+        arrayListImage.add(photo15)
+        arrayListImage.add(photo16)
+
+        arrayListName.add("Your Story")
+        arrayListName.add("image_2")
+        arrayListName.add("image_3")
+        arrayListName.add("image_4")
+        arrayListName.add("image_5")
+        arrayListName.add("image_6")
+        arrayListName.add("image_7")
+        arrayListName.add("image_8")
+        arrayListName.add("image_9")
+        arrayListName.add("image_10")
+        arrayListName.add("image_11")
+        arrayListName.add("image_12")
+        arrayListName.add("image_13")
+        arrayListName.add("image_14")
+        arrayListName.add("image_15")
+        arrayListName.add("image_16")
+
+        for (i in 0 until  arrayListName.size) {
+            arrayListPost.add(DataPost(arrayListName[i] , arrayListImage[i] , "Description" , "100"))
+        }
     }
+
 }

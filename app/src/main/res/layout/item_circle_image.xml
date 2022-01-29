@@ -5,13 +5,18 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        app:cardBackgroundColor="#F44336"
+        app:cardCornerRadius="1000dp"
+        app:cardElevation="0dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,15 +25,30 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/profile_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/photo_home"
-            app:civ_border_width="2dp"
+            app:civ_border_width="3dp"
+            android:cropToPadding="true"
             android:scaleType="centerCrop"
-            app:civ_border_color="#F436F1"/>
+            android:layout_margin="2dp"
+            app:civ_border_color="@color/white"/>
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/card_image"
+        app:layout_constraintLeft_toLeftOf="@id/card_image"
+        app:layout_constraintRight_toRightOf="@id/card_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"
+        android:text="photo"
+        android:textSize="15sp"
+        android:textStyle="normal"
 
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
